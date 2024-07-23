@@ -1,0 +1,135 @@
+<!DOCtype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        #h1 {
+            text-align: center;
+            font-size: 50px;
+            text-shadow: ;
+        }
+        #main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+         
+        }
+        #screen{
+            height: 70px;
+            width: 250px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px; 
+        }
+        input, button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 250px; 
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #0c0b0b;
+    padding: 8px;
+    text-align: left;
+    font-size: 20px;
+    
+
+    
+}
+
+th {
+    background-color:transparent;
+}
+#body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('expense1.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        filter: blur(5px);
+        z-index: -1;
+      }
+      #screen,#type,#amount{
+        border:1px solid black;
+        
+      }
+        
+    </style>
+</head>
+<body id="body">
+    <h1 id="h1">EXPENSE TRACKER</h1>
+    <div id="main">
+        <label for="screen">TOTAL AMOUNT</label>
+        <input type="text" id="screen" value="0.0"  readonly>
+        <h id="success">ADD PLEASE!</h>
+        <input type="text" id="type" placeholder="Enter expense type">
+        <input type="text" id="amount" placeholder="Enter amount">
+        <button onclick="addExpense()">Add</button>
+        <button onclick="reset()">Reset</button>
+        
+    </div>
+    <table id="expenseTable">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    <script>
+        
+        var screenText= 0;
+        
+function addExpense() {
+    var type = document.getElementById("type").value;
+    var amount = parseFloat(document.getElementById("amount").value);
+    screenText += amount;
+    document.getElementById("screen").value = screenText.toFixed(2); 
+
+
+    document.getElementById("success").innerText = `You have successfully added ${type} of ${amount} rupees`;
+
+   
+    var tableBody = document.getElementById("expenseTable").getElementsByTagName('tbody')[0];
+    var newRow = tableBody.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    cell1.innerHTML = type;
+    cell2.innerHTML = amount.toFixed(2);
+}
+function reset(){
+    window.location.reload();
+}
+    </script>
+</body>
+</html>`
